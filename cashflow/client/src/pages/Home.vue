@@ -1,8 +1,13 @@
 <template>
   <div class="home">
-    <Bills :bills="bills" />
-    <Transactions :transactions="transactions" />
-    <Cashflow />
+    <div class="main">
+      <Bills v-if="!currentPage" :bills="bills" />
+      <Transactions v-if="!currentPage" :transactions="transactions" />
+      <Cashflow v-else/>
+    </div>
+
+    <button @click="togglePage" v-if="!currentPage">GO TO CASHFLOW PAGE</button>
+    <button @click="togglePage" v-else>GO TO MAIN PAGE</button>
   </div>
 </template>
 
@@ -17,24 +22,28 @@ export default {
   data: () => ({
     user: users[0],
     transactions: null,
-    bills: null
+    bills: null,
+    currentPage: 0
   }),
   components: {
     Bills,
     Transactions,
     Cashflow
   },
-  mounted: function() {
+  mounted: function () {
     this.getBills();
     this.getTransactions();
   },
   methods: {
     getBills() {
-
       this.bills = this.user.bills;
     },
     getTransactions() {
       this.transactions = this.user.transactions;
+    },
+    togglePage() {
+      if (this.currentPage) this.currentPage--;
+      else this.currentPage++;
     }
   }
 };
