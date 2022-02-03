@@ -11,14 +11,20 @@ class User(models.Model):
     last_name = models.CharField(max_length=200)
     balance = models.IntegerField()
 
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
+
 
 class Influence(models.Model):
     name = models.CharField(max_length=100)
     amount = models.IntegerField()
     bills = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='bills'
+        User, on_delete=models.CASCADE, related_name='bills', null=True, default=None, blank=True
     )
     balance_history = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='balance_history'
+        User, on_delete=models.CASCADE, related_name='balance_history', null=True, default=None, blank=True
     )
     date = models.DateField()
+
+    def __str__(self):
+        return self.name
