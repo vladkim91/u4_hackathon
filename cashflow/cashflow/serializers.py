@@ -18,7 +18,7 @@ class UserSerializer(serializers.ModelSerializer):
         many=True,
         read_only=True
     )
-    balance_history = InfluenceSerializer(
+    transactions = InfluenceSerializer(
         many=True,
         read_only=True
     )
@@ -26,4 +26,4 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('username', 'password', 'first_name',
-                  'last_name', 'bills', 'balance_history')
+                  'last_name', 'balance', 'bills', 'transactions')

@@ -21,8 +21,8 @@ class Influence(models.Model):
     bills = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='bills', null=True, default=None, blank=True
     )
-    balance_history = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='balance_history', null=True, default=None, blank=True
+    transactions = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='transactions', null=True, default=None, blank=True
     )
     date = models.DateField()
 

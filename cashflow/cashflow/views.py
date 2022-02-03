@@ -22,7 +22,7 @@ class ProfileDetail(APIView):
         res = 'None'
         if user != None:
 
-            serializer = UserSerializer(user)
+            serializer = UserSerializer(user, )
             res = serializer.data
 
         return Response(res)
