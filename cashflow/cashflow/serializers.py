@@ -3,11 +3,6 @@ from .models import User, Influence
 
 
 class InfluenceSerializer(serializers.ModelSerializer):
-    # user = serializers.PrimaryKeyRelatedField(
-    #     many=True,
-    #     read_only=True
-    # )
-
     class Meta:
         model = Influence
         fields = ('name', 'amount', 'date')
