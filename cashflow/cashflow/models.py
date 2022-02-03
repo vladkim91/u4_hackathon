@@ -24,7 +24,10 @@ class Influence(models.Model):
     transactions = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='transactions', null=True, default=None, blank=True
     )
-    date = models.DateField()
+    date = models.DateField(
+        null=True,
+        blank=True
+    )
 
     def __str__(self):
         return self.name

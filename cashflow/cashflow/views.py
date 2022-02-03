@@ -49,3 +49,22 @@ class CreateProfile(APIView):
 
         serializer = UserSerializer(new_user)
         return Response(serializer.data)
+
+
+class CreateBill(APIView):
+    queryset = Influence.objects.all()
+
+    def post(self, request, format=None):
+        user_pk = int(request.data.get('user')) or None
+        print(user_pk)
+
+        user = User.objects.get(id=user_pk) if User.objects.filter(
+            id=user_pk) else None
+
+        if user_pk == None or user == None:
+            return Response('Failed!')
+
+        name = request.data.get('name') or ''
+        amount = int(request.data.get('amount')) or 0
+        new_bill = self.queryset.create(name=name, amount=amount, bills=user)
+        return Response(new_bill)
