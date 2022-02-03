@@ -18,11 +18,12 @@
 <script>
 import Nav from './components/Nav.vue';
 import Login from './pages/Login.vue';
+
 export default {
   name: 'App',
   components: { Nav, Login },
   data: () => ({
-    email: '',
+    username: '',
     password: ''
   }),
   methods: {
