@@ -67,4 +67,5 @@ class CreateBill(APIView):
         name = request.data.get('name') or ''
         amount = int(request.data.get('amount')) or 0
         new_bill = self.queryset.create(name=name, amount=amount, bills=user)
-        return Response(new_bill)
+        serializer = InfluenceSerializer(new_bill)
+        return Response(serializer.data)
