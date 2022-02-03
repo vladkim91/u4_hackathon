@@ -1,18 +1,12 @@
 from rest_framework import generics
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from .serializers import UserSerializer, InfluenceSerializer
 from .models import User, Influence
 
 
-class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+class UserDetail(APIView):
     queryset = User.objects.all()
-    serializer_class = UserSerializer
 
-
-class InfluenceList(generics.ListCreateAPIView):
-    queryset = Influence.objects.all()
-    serializer_class = InfluenceSerializer
-
-
-class InfluenceDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Influence.objects.all()
-    serializer_class = InfluenceSerializer
+    def get(self, request, format=None):
+        return Response(request.data)
