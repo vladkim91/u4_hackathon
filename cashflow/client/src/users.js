@@ -7,33 +7,38 @@ export default [
     first_name: 'Vlad',
     last_name: 'Kim',
     balance: 1000,
-    influences: [
+    bills: [
       {
         name: 'Rent',
         amount: -1200,
-        bills: 1,
-        balance_history: 1,
         date: new Date()
       },
       {
         name: 'Salary',
         amount: 2000,
-        bills: 1,
-        balance_history: 1,
         date: new Date()
       },
       {
         name: 'Dividends',
         amount: 100,
-        bills: 1,
-        balance_history: 1,
         date: new Date()
       },
       {
         name: 'Internet',
         amount: -60,
-        bills: 1,
-        balance_history: 1,
+
+        date: new Date()
+      }
+    ],
+    transactions: [
+      {
+        name: 'Internet',
+        amount: -60,
+        date: new Date()
+      },
+      {
+        name: 'Rent',
+        amount: -1200,
         date: new Date()
       }
     ]
