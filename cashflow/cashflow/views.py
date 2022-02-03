@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .serizaliers import UserSerializer, InfluenceSerializer
+from .serializers import UserSerializer, InfluenceSerializer
 from .models import User, Influence
 
 
