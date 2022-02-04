@@ -38,7 +38,7 @@ class CreateProfile(APIView):
         email = request.data.get('email') or ''
         first_name = request.data.get('first_name') or ''
         last_name = request.data.get('last_name') or ''
-        balance = request.data.get('balance') or ''
+        balance = request.data.get('balance') or 0
 
         existing_user = get_existing_user(username, password)
 
