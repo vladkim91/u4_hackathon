@@ -3,11 +3,11 @@
     <button @click="toggleEditing">{{ isEditing ? 'Stop Editing' : 'Edit' }}</button>
     <button @click="createBill">+</button>
     <div v-if="!isEditing">
-      <div class='bill' v-for="bill in bills" :key="bill.id">
+      <div class='bill' v-for="(bill, index) in bills" :key="bill.id">
         <p>{{bill.name}}</p>
         <p :class="bill.amount < 0 ? 'negative' : 'positive'">${{Math.abs(bill.amount)}}</p>
-        <button @click="adjustBalance" :value="bill.amount" v-if="(bill.amount < 0)">Make payment</button>
-        <button @click="adjustBalance" :value="bill.amount" v-else>Collect</button>
+        <button @click="(e) => adjustBalance(e, index)" :value="bill.amount" v-if="(bill.amount < 0)">Make payment</button>
+        <button @click="(e) => adjustBalance(e, index)" :value="bill.amount" v-else>Collect</button>
       </div>
     </div>
     <div v-else>
@@ -44,9 +44,9 @@ export default {
     toggleEditing() {
       this.isEditing = !this.isEditing
     },
-    adjustBalance(e) {
+    adjustBalance(e, billIndex) {
       e.preventDefault()
-      this.$emit('adjustBalance', parseInt(e.target.value));
+      this.$emit('adjustBalance', parseInt(e.target.value), billIndex);
     } 
   }
 };

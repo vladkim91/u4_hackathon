@@ -29,6 +29,7 @@ import Cashflow from '../components/Cashflow.vue';
 import Transactions from '../components/Transactions.vue';
 import { getUserProfile } from '../services/LoginServices'
 import { createBill, updateBill, deleteBill } from '../services/BillServices'
+import { createTransaction } from '../services/TransactionServices'
 
 export default {
   name: 'Home',
@@ -73,7 +74,8 @@ export default {
       if (this.currentPage) this.currentPage--;
       else this.currentPage++;
     },
-    adjustBalance(transactionAmount) {
+    async adjustBalance(transactionAmount, billIndex) {
+      await this.createTransaction(billIndex)
       this.user.balance += transactionAmount;
     },
     async createBill() {
@@ -96,6 +98,24 @@ export default {
       
       if (result !== 'Failed!') {
         this.bills.splice(billIndex, 1)
+      }
+    },
+    async createTransaction(billIndex) {
+      const userId = parseInt(localStorage.getItem('userId'));
+      const bill = this.bills[billIndex];
+      let theDate = new Date(Date.now());
+      theDate = theDate.toLocaleString(undefined, {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+      });
+      theDate = theDate.split('/').reverse().join('-');
+
+      const result = await createTransaction(userId, bill.name, bill.amount, theDate);
+
+      if (result !== 'Failed!') {
+        result.date = new Date(result.date)
+        this.transactions.push(result)
       }
     }
   }
