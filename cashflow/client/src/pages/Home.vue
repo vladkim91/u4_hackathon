@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <div class="main">
-      <Bills v-if="!currentPage" :bills="bills" />
-      <Transactions v-if="!currentPage" :transactions="transactions" :balance="user.balance"/>
+      <Bills v-if="!currentPage" :bills="bills" @adjustBalance="adjustBalance"/>
+      <Transactions v-if="!currentPage" :transactions="transactions" :balance="user.balance" />
       <Cashflow v-else/>
     </div>
 
@@ -23,7 +23,8 @@ export default {
     user: users[0],
     transactions: null,
     bills: null,
-    currentPage: 0
+    currentPage: 0,
+    currentTransaction: null
   }),
   components: {
     Bills,
@@ -33,6 +34,7 @@ export default {
   mounted: function () {
     this.getBills();
     this.getTransactions();
+
   },
   methods: {
     getBills() {
@@ -44,6 +46,10 @@ export default {
     togglePage() {
       if (this.currentPage) this.currentPage--;
       else this.currentPage++;
+    },
+    adjustBalance(transactionAmount) {
+      this.user.balance += transactionAmount
+      console.log(transactionAmount);
     }
   }
 };
