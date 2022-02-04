@@ -15,7 +15,7 @@
         :transactions="transactions"
         :balance="user.balance"
       />
-      <Cashflow v-else :bills="bills"/>
+      <Cashflow v-else :bills="bills" :togglePage="togglePage" />
     </div>
 
     <button class="h-b-logo" @click="togglePage" v-if="!currentPage"><img src="../assets/logo.png"  alt=""></button>
