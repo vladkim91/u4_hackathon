@@ -13,6 +13,7 @@
       <div class='bill' v-for="(bill, index) in bills" :key="bill.id">
         <input name="name" type="text" :value="bill.name" @change="(e) => updateBill(e, index)">
         <input name="amount" type="number" :value="bill.amount" @change="(e) => updateBill(e, index)">
+        <button @click="deleteBill(index)">x</button>
       </div>
     </div>
   </div>
@@ -26,12 +27,14 @@ export default {
     isEditing: false
   }),
   methods: {
-    updateBill(e, index) {
+    updateBill(e, billIndex) {
       const billProperty = e.target.name;
       const billValue = e.target.value;
-      const billIndex = index;
 
       this.$emit('updateBill', billProperty, billValue, billIndex)
+    },
+    deleteBill(billIndex) {
+      this.$emit('deleteBill', billIndex)
     },
     toggleEditing() {
       this.isEditing = !this.isEditing

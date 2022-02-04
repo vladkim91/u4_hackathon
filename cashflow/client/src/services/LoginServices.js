@@ -9,7 +9,7 @@ export const getUserProfile = async (userId) => {
   const result = await Client.post('/profile', {
     user: userId
   });
-  console.log(result.data);
+
   return result.data;
 };
 

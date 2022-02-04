@@ -116,10 +116,9 @@ class UpdateBill(APIView):
 class DeleteBill(APIView):
     queryset = Influence.objects.all()
 
-    def delete(self, request, format=None):
-        influence_pk = int(request.data.get('bill')) or None
+    def delete(self, request, pk, format=None):
+        influence_pk = pk
         influence = self.queryset.filter(id=influence_pk)
-
         delete_result = influence.delete()
 
         if delete_result == 0:

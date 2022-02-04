@@ -7,6 +7,7 @@
         :bills="bills"
         @adjustBalance="adjustBalance"
         @updateBill="updateBill"
+        @deleteBill="deleteBill"
       />
       <Transactions
         v-if="!currentPage"
@@ -26,7 +27,7 @@ import Bills from '../components/Bills.vue';
 import Cashflow from '../components/Cashflow.vue';
 import Transactions from '../components/Transactions.vue';
 import { getUserProfile } from '../services/LoginServices'
-import { updateBill } from '../services/BillServices'
+import { updateBill, deleteBill } from '../services/BillServices'
 
 export default {
   name: 'Home',
@@ -76,11 +77,16 @@ export default {
     },
     async updateBill(billProperty, billValue, billIndex) {
       const info = { ...this.bills[billIndex], [billProperty]: billValue }
-      console.log(info)
       const result = await updateBill(info);
-      console.log(result)
-      // this.bills[billIndex][billProperty] = billValue
-
+      this.bills[billIndex] = result
+    },
+    async deleteBill(billIndex) {
+      const id = this.bills[billIndex].id
+      const result = await deleteBill(id);
+      
+      if (result !== 'Failed!') {
+        this.bills.splice(billIndex, 1)
+      }
     }
   }
 };
