@@ -140,6 +140,33 @@
   border-radius: 2rem;
 }
 
+.t-balance {
+  font-size: 1.5rem;
+  justify-content: center;
+  display: flex;
+}
+
+.t-header {
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.1rem;
+  border-bottom: 1px solid black;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.transaction {
+  width: 95%;
+  padding: .1rem 1rem;
+}
+
+.t-t-row {
+  font-size: 1rem;
+  justify-content: space-between;
+  display: flex;
+ 
+  
+}
 /* Structure */
 /* Main code is not operational */
 /* There are things that are added that shouldn't be there */
