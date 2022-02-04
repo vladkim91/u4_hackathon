@@ -24,7 +24,10 @@ export default {
   methods: {
     async handleSubmit() {
       const res = await userLogin(this.userInfo)
-      console.log(res)
+      if (res !== 'Failed!') {
+        this.$router.push('/home')
+        
+      }
     }
   }
 };

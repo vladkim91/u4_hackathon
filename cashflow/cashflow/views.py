@@ -20,12 +20,12 @@ class ProfileDetail(APIView):
 
         user = get_existing_user(username, password)
 
-        res = 'None'
-        if user != None:
-            serializer = UserSerializer(user, )
-            res = serializer.data
+        if user == None:
+            return Response('Failed!')
 
-        return Response(res)
+        serializer = UserSerializer(user)
+
+        return Response(serializer.data)
 
 
 class CreateProfile(APIView):
@@ -42,7 +42,7 @@ class CreateProfile(APIView):
         existing_user = get_existing_user(username, password)
 
         if existing_user != None:
-            return Response('Not Available')
+            return Response('Failed!')
 
         new_user = self.queryset.create(username=username, password=password,
                                         email=email, first_name=first_name, last_name=last_name, balance=balance)
