@@ -1,11 +1,11 @@
 import Client from './';
 
+export const userLogin = async (userInfo) => {
+  const result = await Client.post('/profile', userInfo);
+  return result.data;
+};
+
 export const registerUser = async (userInfo) => {
-  const result = await Client.post('/profile/create', userInfo, {
-    auth: {
-      username: 'cashflowuser',
-      password: 'cashflow'
-    }
-  });
+  const result = await Client.post('/profile/create', userInfo);
   return result.data;
 };
