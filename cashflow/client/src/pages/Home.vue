@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h2>Welcome back, {{user.first_name}} {{user.last_name}}</h2>
+    <h2 class="h-greeting">Welcome back, {{user.first_name}} {{user.last_name}}</h2>
     <div class="main">
       <Bills
         v-if="!currentPage"
@@ -18,8 +18,8 @@
       <Cashflow v-else :bills="bills"/>
     </div>
 
-    <button @click="togglePage" v-if="!currentPage">GO TO CASHFLOW PAGE</button>
-    <button @click="togglePage" v-else>GO TO MAIN PAGE</button>
+    <button class="h-b-logo" @click="togglePage" v-if="!currentPage"><img src="../assets/logo.png"  alt=""></button>
+    <button class="h-b-logo" @click="togglePage" v-else>GO TO MAIN PAGE</button>
   </div>
 </template>
 

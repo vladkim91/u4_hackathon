@@ -23,7 +23,9 @@ export default {
   }),
   methods: {
     async handleSubmit() {
+      console.log(this.userInfo);
       const res = await userLogin(this.userInfo)
+
       if (res !== 'Failed!') {
         this.$router.push('/')
         localStorage.setItem('userId', res)
