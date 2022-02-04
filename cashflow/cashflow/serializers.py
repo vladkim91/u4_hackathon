@@ -5,7 +5,7 @@ from .models import User, Influence
 class InfluenceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Influence
-        fields = ('name', 'amount', 'date')
+        fields = ('id', 'name', 'amount', 'date')
 
 
 class UserSerializer(serializers.ModelSerializer):

@@ -6,6 +6,7 @@
         v-if="!currentPage"
         :bills="bills"
         @adjustBalance="adjustBalance"
+        @updateBill="updateBill"
       />
       <Transactions
         v-if="!currentPage"
@@ -71,6 +72,9 @@ export default {
     },
     adjustBalance(transactionAmount) {
       this.user.balance += transactionAmount;
+    },
+    updateBill(billProperty, billValue, billIndex) {
+      this.bills[billIndex][billProperty] = billValue
     }
   }
 };
