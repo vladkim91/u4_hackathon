@@ -8,5 +8,6 @@ urlpatterns = [
     path('profile/create', views.CreateProfile.as_view()),
     path('profile/bills/create', views.CreateBill.as_view()),
     path('profile/bills/update', views.UpdateBill.as_view()),
-    path('profile/bills/delete', views.DeleteBill.as_view())
+    path('profile/bills/delete', views.DeleteBill.as_view()),
+    path('profile/transactions/create', views.CreateTransaction.as_view())
 ]

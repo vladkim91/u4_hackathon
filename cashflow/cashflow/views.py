@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import UserSerializer, InfluenceSerializer
 from .models import User, Influence
+from datetime import datetime
 
 
 def get_existing_user(username, password):
@@ -56,7 +57,6 @@ class CreateBill(APIView):
 
     def post(self, request, format=None):
         user_pk = int(request.data.get('user')) or None
-        print(user_pk)
 
         user = User.objects.get(id=user_pk) if User.objects.filter(
             id=user_pk) else None
@@ -102,3 +102,24 @@ class DeleteBill(APIView):
             return Response('Failed!')
 
         return Response('Success!')
+
+
+class CreateTransaction(APIView):
+    queryset = Influence.objects.all()
+
+    def post(self, request, format=None):
+        user_pk = int(request.data.get('user')) or None
+
+        user = User.objects.get(id=user_pk) if User.objects.filter(
+            id=user_pk) else None
+
+        if user_pk == None or user == None:
+            return Response('Failed!')
+
+        name = request.data.get('name') or ''
+        amount = int(request.data.get('amount')) or 0
+        date = datetime.now().date()
+        new_bill = self.queryset.create(
+            name=name, amount=amount, transactions=user, date=date)
+        serializer = InfluenceSerializer(new_bill)
+        return Response(serializer.data)
