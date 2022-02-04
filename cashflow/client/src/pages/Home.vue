@@ -24,14 +24,14 @@
 import Bills from '../components/Bills.vue';
 import Cashflow from '../components/Cashflow.vue';
 import Transactions from '../components/Transactions.vue';
-import users from '../users';
+import { getUserProfile } from '../services/LoginServices'
 
 export default {
   name: 'Home',
   data: () => ({
-    user: users[0],
-    transactions: null,
-    bills: null,
+    user: {},
+    transactions: [],
+    bills: [],
     currentPage: 0,
     currentTransaction: null
   }),
@@ -41,10 +41,24 @@ export default {
     Cashflow
   },
   mounted: function () {
-    this.getBills();
-    this.getTransactions();
+    this.getUserProfile()
   },
   methods: {
+    async getUserProfile() {
+      const userId = parseInt(localStorage.getItem('userId'))
+
+      if (!userId) {
+        return this.$router.push('/login')
+      }
+      
+      const res = await getUserProfile(userId)
+      this.user = res;
+      this.user.transactions = this.user.transactions.map((transaction) => {
+        return {...transaction, date: new Date(transaction.date)}
+      })
+      this.getBills()
+      this.getTransactions()
+    },
     getBills() {
       this.bills = this.user.bills;
     },

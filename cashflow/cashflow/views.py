@@ -11,21 +11,45 @@ def get_existing_user(username, password):
         username=username, password=password) else None
 
 
-class ProfileDetail(APIView):
+class Login(APIView):
     queryset = User.objects.all()
 
     def post(self, request, format=None):
-        username = request.data.get('username') or ''
+        incoming_username = request.data.get('username') or ''
         password = request.data.get('password') or ''
-
-        user = get_existing_user(username, password)
-
+        user = get_existing_user(incoming_username, password)
         if user == None:
             return Response('Failed!')
 
         serializer = UserSerializer(user)
 
-        return Response(serializer.data)
+        return Response(serializer.data['id'])
+
+
+class ProfileDetail(APIView):
+    queryset = User.objects.all()
+
+    def post(self, request, format=None):
+        user_pk = int(request.data.get('user')) or None
+
+        user = self.queryset.filter(id=user_pk).first()
+
+        if user == None:
+            return Response('Failed!')
+
+        serializer = UserSerializer(user)
+        print(serializer.data)
+        user_info = {
+            'username': serializer.data['username'],
+            'first_name': serializer.data['first_name'],
+            'last_name': serializer.data['last_name'],
+            'email': serializer.data['email'],
+            'balance': serializer.data['balance'],
+            'bills': serializer.data['bills'],
+            'transactions': serializer.data['transactions']
+        }
+
+        return Response(user_info)
 
 
 class CreateProfile(APIView):

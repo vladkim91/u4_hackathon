@@ -26,6 +26,7 @@ export default {
       const res = await userLogin(this.userInfo)
       if (res !== 'Failed!') {
         this.$router.push('/')
+        localStorage.setItem('userId', res)
       }
     }
   }

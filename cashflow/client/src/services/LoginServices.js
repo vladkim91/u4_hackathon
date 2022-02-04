@@ -1,7 +1,15 @@
 import Client from './';
 
 export const userLogin = async (userInfo) => {
-  const result = await Client.post('/profile', userInfo);
+  const result = await Client.post('/profile/login', userInfo);
+  return result.data;
+};
+
+export const getUserProfile = async (userId) => {
+  const result = await Client.post('/profile', {
+    user: userId
+  });
+  console.log(result.data);
   return result.data;
 };
 
