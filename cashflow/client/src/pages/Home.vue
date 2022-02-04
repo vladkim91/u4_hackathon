@@ -1,9 +1,18 @@
 <template>
   <div class="home">
+    <h2>Welcome back, {{user.first_name}} {{user.last_name}}</h2>
     <div class="main">
-      <Bills v-if="!currentPage" :bills="bills" @adjustBalance="adjustBalance"/>
-      <Transactions v-if="!currentPage" :transactions="transactions" :balance="user.balance" />
-      <Cashflow v-else/>
+      <Bills
+        v-if="!currentPage"
+        :bills="bills"
+        @adjustBalance="adjustBalance"
+      />
+      <Transactions
+        v-if="!currentPage"
+        :transactions="transactions"
+        :balance="user.balance"
+      />
+      <Cashflow v-else :bills="bills"/>
     </div>
 
     <button @click="togglePage" v-if="!currentPage">GO TO CASHFLOW PAGE</button>
@@ -34,7 +43,6 @@ export default {
   mounted: function () {
     this.getBills();
     this.getTransactions();
-
   },
   methods: {
     getBills() {
@@ -48,8 +56,7 @@ export default {
       else this.currentPage++;
     },
     adjustBalance(transactionAmount) {
-      this.user.balance += transactionAmount
-      console.log(transactionAmount);
+      this.user.balance += transactionAmount;
     }
   }
 };
