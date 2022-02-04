@@ -9,7 +9,7 @@ class User(models.Model):
     email = models.CharField(max_length=100)
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
-    balance = models.IntegerField()
+    balance = models.IntegerField(default=0, blank=True)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
