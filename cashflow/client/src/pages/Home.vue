@@ -2,7 +2,7 @@
   <div class="home">
     <div class="main">
       <Bills v-if="!currentPage" :bills="bills" />
-      <Transactions v-if="!currentPage" :transactions="transactions" />
+      <Transactions v-if="!currentPage" :transactions="transactions" :balance="user.balance"/>
       <Cashflow v-else/>
     </div>
 

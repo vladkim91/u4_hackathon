@@ -40,6 +40,12 @@ export default [
         name: 'Rent',
         amount: -1200,
         date: new Date()
+      },
+
+      {
+        name: 'Salary',
+        amount: 2200,
+        date: new Date()
       }
     ]
   }
