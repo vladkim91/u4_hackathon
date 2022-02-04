@@ -1,19 +1,35 @@
 <template>
   <div class="cashflow">
-    <div class="c-income-expenses">
-      <div class="income">
-        Total Income: <span class="positive">${{ totalIncome }}</span>
+    <div class="cashflow-main">
+      <div class="c-income-expenses">
+        <div class="income">
+          Total Income: <span class="positive">${{ totalIncome }}</span>
+        </div>
+        <div class="income">
+          Total Expenses:
+          <span class="negative">${{ Math.abs(totalExpenses) }}</span>
+        </div>
       </div>
-      <div class="income">
-        Total Expenses:
-        <span class="negative">${{ Math.abs(totalExpenses) }}</span>
+      <div class="c-display">Cashflow: <span>${{ Math.abs(cashFlow) }}</span></div>
+      <button class="budget-button" @click="togglePage">budget</button>
+    </div>
+    <div class="projections-with-arrows">
+      <div class="arrow-container">
+        <img src="../assets/arrow.png" alt="">
+        <img src="../assets/arrow.png" alt="">
+        <img src="../assets/arrow.png" alt="">
+      </div>
+      <h1>Projections</h1>
+      <div class="arrow-container">
+        <img src="../assets/arrow.png" alt="">
+        <img src="../assets/arrow.png" alt="">
+        <img src="../assets/arrow.png" alt="">
       </div>
     </div>
-    <div class="c-display">Cashflow: ${{ Math.abs(cashFlow) }}</div>
     <div class="projections">
-      <div class="p-quarterly">Quarter: ${{projections.quarter}}</div>
-      <div class="p-annual">Annual: ${{projections.annual}}</div>
-      <div class="p-five-years">5 years: ${{projections.fiveYear}}</div>
+      <div class="p-quarterly">Quarter:<span class="projection-amount">${{projections.quarter}}</span></div>
+      <div class="p-annual">Annual: <span class="projection-amount">${{projections.annual}}</span></div>
+      <div class="p-five-years">5 years: <span class="projection-amount">${{projections.fiveYear}}</span></div>
     </div>
   </div>
 </template>
@@ -22,7 +38,8 @@
 export default {
   name: 'Cashflow',
   props: {
-    bills: Array
+    bills: Array,
+    togglePage: Function
   },
   data: () => ({
     income: [],

@@ -1,8 +1,30 @@
+html,
+body,
+#app,
+main {
+  height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+}
+
 body {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-size: 10px;
-  background:  linear-gradient(0deg, rgba(120, 33, 120, 0.9), #964A96, rgba(152, 0, 152, 0.4983), #6C096C);
+  background: linear-gradient(
+    0deg,
+    rgba(120, 33, 120, 0.9),
+    #964a96,
+    rgba(152, 0, 152, 0.4983),
+    #6c096c
+  );
+  background-repeat: no-repeat;
+  background-size: cover;
   font-family: 'Righteous', cursive;
 }
-

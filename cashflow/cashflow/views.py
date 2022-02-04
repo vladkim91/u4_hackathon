@@ -87,7 +87,7 @@ class CreateBill(APIView):
         if user_pk == None or user == None:
             return Response('Failed!')
 
-        name = request.data.get('name') or ''
+        name = request.data.get('name') or 'New bill'
         amount = request.data.get('amount') or 0
         amount = int(amount)
         new_bill = self.queryset.create(name=name, amount=amount, bills=user)
