@@ -25,7 +25,7 @@
   margin: 0 1rem;
 }
 .n-b-text {
-  -webkit-text-stroke: 0.1rem #641364;
+  -webkit-text-stroke: 1.2px #641364;
   background: -webkit-linear-gradient(
     90deg,
     #ffca0c,
@@ -39,7 +39,7 @@
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
 }
 
 .n-container {
@@ -56,7 +56,7 @@
 .bills {
   background: white;
   border-radius: 0.3rem;
-  width: 60rem;
+  width: 55rem;
   height: 30rem;
   margin: 0 3rem;
   border: 0.1rem solid black;
@@ -90,12 +90,10 @@
   outline: inherit;
 }
 
-.b-t-row {
-}
 
 .b-t-r-name-amount {
   display: flex;
-  width: 50rem;
+  width: 44rem;
   border-bottom: black solid;
 }
 
@@ -141,7 +139,7 @@
 }
 
 .t-balance {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   justify-content: center;
   display: flex;
 }
@@ -156,7 +154,7 @@
 }
 
 .transaction {
-  width: 95%;
+  width: 97%;
   padding: .1rem 1rem;
 }
 
@@ -170,3 +168,23 @@
 /* Structure */
 /* Main code is not operational */
 /* There are things that are added that shouldn't be there */
+.h-greeting {
+  margin: 1.3rem;
+  font-size: 1.6rem;
+
+  -webkit-text-stroke: 1.2px #641364;
+  background: -webkit-linear-gradient(
+    90deg,
+    #ffca0c,
+    #fec105,
+    #fdb800,
+    #fbae00,
+    #faa500,
+    #f79c00,
+    #f59303,
+    #f28a07
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+}

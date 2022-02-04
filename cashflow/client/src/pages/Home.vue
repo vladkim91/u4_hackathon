@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h2>Welcome back, {{user.first_name}} {{user.last_name}}</h2>
+    <h2 class="h-greeting">Welcome back, {{user.first_name}} {{user.last_name}}</h2>
     <div class="main">
       <Bills
         v-if="!currentPage"
