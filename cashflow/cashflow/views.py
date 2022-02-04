@@ -14,8 +14,8 @@ class ProfileDetail(APIView):
     queryset = User.objects.all()
 
     def post(self, request, format=None):
-        username = request.data.get("username") or ''
-        password = request.data.get("password") or ''
+        username = request.data.get('username') or ''
+        password = request.data.get('password') or ''
 
         user = get_existing_user(username, password)
 
@@ -32,8 +32,8 @@ class CreateProfile(APIView):
     queryset = User.objects.all()
 
     def post(self, request, format=None):
-        username = request.data.get("username") or ''
-        password = request.data.get("password") or ''
+        username = request.data.get('username') or ''
+        password = request.data.get('password') or ''
         email = request.data.get('email') or ''
         first_name = request.data.get('first_name') or ''
         last_name = request.data.get('last_name') or ''
@@ -68,4 +68,22 @@ class CreateBill(APIView):
         amount = int(request.data.get('amount')) or 0
         new_bill = self.queryset.create(name=name, amount=amount, bills=user)
         serializer = InfluenceSerializer(new_bill)
+        return Response(serializer.data)
+
+
+class UpdateBill(APIView):
+    queryset = Influence.objects.all()
+
+    def put(self, request, format=None):
+        influence_pk = int(request.data.get('bill')) or None
+        info = request.data.get('info') or {}
+        influence = self.queryset.filter(id=influence_pk)
+
+        update_result = influence.update(
+            name=info['name'], amount=info['amount'])
+
+        if update_result == 0:
+            return Response('Failed!')
+
+        serializer = InfluenceSerializer(influence.first())
         return Response(serializer.data)
