@@ -6,10 +6,10 @@
       v-for="transaction in transactions"
       :key="transaction.id"
     >
-      <h2>{{ transaction.name }}</h2>
-      <h2 :class="transaction.amount < 0 ? 'negative' : 'positive'">
+      <p>{{ transaction.name }}</p>
+      <p :class="transaction.amount < 0 ? 'negative' : 'positive'">
         ${{ Math.abs(transaction.amount) }}
-      </h2>
+      </p>
       <p>
         {{
           transaction.date.toLocaleDateString('en-US', {
