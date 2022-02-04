@@ -98,9 +98,10 @@ class UpdateBill(APIView):
     queryset = Influence.objects.all()
 
     def put(self, request, format=None):
-        influence_pk = int(request.data.get('bill')) or None
-        info = request.data.get('info') or {}
+        influence_pk = int(request.data.get('id')) or None
+        info = request.data
         influence = self.queryset.filter(id=influence_pk)
+        print(info)
 
         update_result = influence.update(
             name=info['name'], amount=info['amount'])

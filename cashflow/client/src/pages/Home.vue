@@ -26,6 +26,7 @@ import Bills from '../components/Bills.vue';
 import Cashflow from '../components/Cashflow.vue';
 import Transactions from '../components/Transactions.vue';
 import { getUserProfile } from '../services/LoginServices'
+import { updateBill } from '../services/BillServices'
 
 export default {
   name: 'Home',
@@ -73,8 +74,13 @@ export default {
     adjustBalance(transactionAmount) {
       this.user.balance += transactionAmount;
     },
-    updateBill(billProperty, billValue, billIndex) {
-      this.bills[billIndex][billProperty] = billValue
+    async updateBill(billProperty, billValue, billIndex) {
+      const info = { ...this.bills[billIndex], [billProperty]: billValue }
+      console.log(info)
+      const result = await updateBill(info);
+      console.log(result)
+      // this.bills[billIndex][billProperty] = billValue
+
     }
   }
 };
