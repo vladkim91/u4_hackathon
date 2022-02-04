@@ -3,7 +3,7 @@
     <label for="username">Username</label>
     <input id="username" name="username" type="text" v-model="loginInfo.username">
     <label for="password">Password</label>
-    <input id="password" name="password" type="text" v-model="loginInfo.password">
+    <input id="password" name="password" type="password" v-model="loginInfo.password">
     <label for="email">Email</label>
     <input id="email" name="email" type="email" v-model="loginInfo.email">
     <label for="first-name">First Name</label>
@@ -31,7 +31,10 @@ export default {
   methods: {
     async handleSubmit(){
       const res = await registerUser(this.loginInfo)
-      console.log(res)
+      
+      if (res !== 'Failed!') {
+        this.$router.push('/login')
+      }
     }
   }
 }

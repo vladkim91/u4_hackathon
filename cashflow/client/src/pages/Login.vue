@@ -25,8 +25,7 @@ export default {
     async handleSubmit() {
       const res = await userLogin(this.userInfo)
       if (res !== 'Failed!') {
-        this.$router.push('/home')
-        
+        this.$router.push('/')
       }
     }
   }
