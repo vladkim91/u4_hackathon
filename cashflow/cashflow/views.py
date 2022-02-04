@@ -79,7 +79,7 @@ class CreateBill(APIView):
     queryset = Influence.objects.all()
 
     def post(self, request, format=None):
-        user_pk = int(request.data.get('user')) or None
+        user_pk = int(request.data.get('id')) or None
 
         user = User.objects.get(id=user_pk) if User.objects.filter(
             id=user_pk) else None
@@ -88,7 +88,8 @@ class CreateBill(APIView):
             return Response('Failed!')
 
         name = request.data.get('name') or ''
-        amount = int(request.data.get('amount')) or 0
+        amount = request.data.get('amount') or 0
+        amount = int(amount)
         new_bill = self.queryset.create(name=name, amount=amount, bills=user)
         serializer = InfluenceSerializer(new_bill)
         return Response(serializer.data)

@@ -1,6 +1,7 @@
 <template>
   <div class='bills'>
     <button @click="toggleEditing">{{ isEditing ? 'Stop Editing' : 'Edit' }}</button>
+    <button @click="createBill">+</button>
     <div v-if="!isEditing">
       <div class='bill' v-for="bill in bills" :key="bill.id">
         <p>{{bill.name}}</p>
@@ -27,21 +28,25 @@ export default {
     isEditing: false
   }),
   methods: {
+    createBill() {
+      this.$emit('createBill');
+      this.isEditing = true;
+    },
     updateBill(e, billIndex) {
       const billProperty = e.target.name;
       const billValue = e.target.value;
 
-      this.$emit('updateBill', billProperty, billValue, billIndex)
+      this.$emit('updateBill', billProperty, billValue, billIndex);
     },
     deleteBill(billIndex) {
-      this.$emit('deleteBill', billIndex)
+      this.$emit('deleteBill', billIndex);
     },
     toggleEditing() {
       this.isEditing = !this.isEditing
     },
     adjustBalance(e) {
       e.preventDefault()
-      this.$emit('adjustBalance', parseInt(e.target.value))
+      this.$emit('adjustBalance', parseInt(e.target.value));
     } 
   }
 };
