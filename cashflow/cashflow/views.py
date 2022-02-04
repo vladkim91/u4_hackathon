@@ -87,3 +87,18 @@ class UpdateBill(APIView):
 
         serializer = InfluenceSerializer(influence.first())
         return Response(serializer.data)
+
+
+class DeleteBill(APIView):
+    queryset = Influence.objects.all()
+
+    def delete(self, request, format=None):
+        influence_pk = int(request.data.get('bill')) or None
+        influence = self.queryset.filter(id=influence_pk)
+
+        delete_result = influence.delete()
+
+        if delete_result == 0:
+            return Response('Failed!')
+
+        return Response('Success!')

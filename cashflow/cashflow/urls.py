@@ -7,5 +7,6 @@ urlpatterns = [
          name='profile_detail'),
     path('profile/create', views.CreateProfile.as_view()),
     path('profile/bills/create', views.CreateBill.as_view()),
-    path('profile/bills/update', views.UpdateBill.as_view())
+    path('profile/bills/update', views.UpdateBill.as_view()),
+    path('profile/bills/delete', views.DeleteBill.as_view())
 ]
