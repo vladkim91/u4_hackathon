@@ -1,0 +1,10 @@
+.negative {
+  color: red
+}
+.positive {
+  color: green
+}
+.transactions {
+  border: 1px solid black;
+  width: 30vw;
+}
