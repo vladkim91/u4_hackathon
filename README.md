@@ -23,8 +23,8 @@ CashFlow is a web application that allows user to calculate their monthly financ
 ## Technologies
 _____________
 
-![](./public/1_9JPzJJ6ttsezVnWrrSh2bw.png)
-![](./public/1_bWE-II6fsnV7my9vWLoyxQ.png)
+![](./cashflow/client/public/1_9JPzJJ6ttsezVnWrrSh2bw.png)
+![](./cashflow/client/public/1_bWE-II6fsnV7my9vWLoyxQ.png)
 
 
 ## Features
@@ -38,25 +38,26 @@ ____
 
 ## Entity Relationship Diagram
 _____
-![](./public/erd.jpeg)
+![](./cashflow/client/public/erd.jpeg)
+
 
 ## Component Hierarchy Diagram
-![](./public/chd.jpeg)
+![](./cashflow/client/public/chd.jpeg)
 
 
 # Screenshots
 
 ### User UI
 
-![](./public/main.png)
+![](./cashflow/client/public/main.png)
 
 ### Cashflow UI
 
-![](./public/cashflow.png)
+![](./cashflow/client/public/cashflow.png)
 
 ### Resources Page
 
-![](./public/resources.png)
+![](./cashflow/client/public/resources.png)
 
 
 
